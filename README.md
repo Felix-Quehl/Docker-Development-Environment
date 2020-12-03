@@ -1,5 +1,31 @@
 # Docker Container with SSH and Docker
 
+
+## *TL;DR*
+
+```bash
+# Bash
+name="TEST"
+docker build . --tag "ubuntu:custom"
+docker run -d --name "$name" --restart unless-stopped --privileged -p 22 ubuntu:custom
+docker exec --user ubuntu "$name" "/scripts/keypair.sh"
+docker cp "$(echo $name):/home/ubuntu/.ssh/id_ed25519" ./$name.id
+docker port "$name"
+ssh ubuntu@localhost -p $YOUR_PORT -i ./$name.id
+```
+
+## How To
+
+*Set container name variable*
+
+```bash
+# Bash
+name="TEST"
+
+# Powershell
+$name="TEST"
+```
+
 *These Commands should work in windows powershell and linux terminal*
 
 ```bash
