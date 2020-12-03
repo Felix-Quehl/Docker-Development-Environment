@@ -1,49 +1,28 @@
 # Docker Container with SSH and Docker
 
-## Build
+*These Commands should work in windows powershell and linux terminal*
 
 ```bash
-docker build . --tag "ubuntu:custom"
-
+# Build image
+$ docker build . --tag "ubuntu:custom"
 ...
 Successfully built d643583d4ccd  
 Successfully tagged ubuntu:custom
-```
-## Start
 
-```bash
-docker run -d --name "$name" --restart unless-stopped --privileged -p 22 ubuntu:custom
-
+# Start Container 
+$ docker run -d --name "$name" --restart unless-stopped --privileged -p 22 ubuntu:custom
 2962b5e8ae66d9c065e0fe507667e0c0b002d557d71a671fa5f8579d698b32ce
-```
 
-    
-
-## Key pair
-
-### Create
-
-```bash
-docker exec --user ubuntu "$name" "/scripts/keypair.sh"
-
+# Create Keys
+$ docker exec --user ubuntu "$name" "/scripts/keypair.sh"
 Agent pid 137   
 Identity added: /home/ubuntu/.ssh/id_ed25519 (ubuntu@2962b5e8ae66)
-```
 
+# Copy Key
+$ docker cp "$(echo $name):/home/ubuntu/.ssh/id_ed25519" ./$name.id
 
-### Download
-
-#### Linux
-
-```bash
-docker cp "$(echo $name):/home/ubuntu/.ssh/id_ed25519" ./$name.id
-```
-
-### Check
-
-```bash
-cat ./$name.id
-
+# Check Key
+$ cat ./$name.id
 -----BEGIN OPENSSH PRIVATE KEY-----
 57VIMaW2NcQdcwfHBWL2K2tYNr6KZmSoOONJ30C9vn8vXjpkABH4vA46mZ0c
 jitL8mifC1pxQUHVm3qWN6nZToDXINtsrpmHFob5hVwrBeGbIKF0sDZRWrng
@@ -56,13 +35,11 @@ NpwMVMUDmR9ixcsIjFv5ElAfWgyzQYg1ky6qZSwbY1yUNSpBEZ1eNcgHB0fx
 cMi8UNWSNLxTw8dQ750B39LUCZQWN2c6sLa5DxpMozt6PwcLybMaWrB5LDgB
 pnlxrirpr95zRCPKwLmufG4O3cU9MZ4U9E4swji0X08rrcyAjpuXhVJE8oHA
 -----END OPENSSH PRIVATE KEY-----
-```
-## Connect
 
-```bash
-docker port $name
-
+# get port
+$ docker port $name
 22/tcp -> 0.0.0.0:32780
 
-ssh ubuntu@localhost -p 32780 -i ./$name.id
+# connect via ssh
+$ ssh ubuntu@localhost -p 32780 -i ./$name.id
 ```
