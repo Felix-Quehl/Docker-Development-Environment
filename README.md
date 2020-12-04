@@ -2,17 +2,21 @@
 
 ## *TL;DR*
 
-### Spawn-Node
+### Include Script in current Terminal
 
 **UNIX**
 ```bash
 $ source ./spawn.sh
-$ Spawn-Node YourCoolName
 ```
 
 **WINDOWS**
 ```powershell
 $ . ./spawn.ps1
+```
+
+### Spawn-Node
+
+```bash
 $ Spawn-Node YourCoolName
 ```
 
