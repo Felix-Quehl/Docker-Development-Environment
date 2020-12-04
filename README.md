@@ -24,7 +24,7 @@ $ docker port YourCoolName
 $ ssh -i ./YourCoolName.id -p 32771 ubuntu@localhost
 ```
 
-## How To
+## Details
 
 *Set container name variable*
 
