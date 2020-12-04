@@ -4,12 +4,12 @@
 
 ### Include Script in current Terminal
 
-**UNIX**
+*UNIX*
 ```bash
 $ source ./spawn.sh
 ```
 
-**WINDOWS**
+*WINDOWS*
 ```powershell
 $ . ./spawn.ps1
 ```
