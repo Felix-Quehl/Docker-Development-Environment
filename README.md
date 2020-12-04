@@ -1,17 +1,27 @@
 # Docker Container with SSH and Docker
 
-
 ## *TL;DR*
 
+### Spawn-Node
+
+**UNIX**
 ```bash
-# Bash
-name="TEST"
-docker build . --tag "ubuntu:custom"
-docker run -d --name "$name" --restart unless-stopped --privileged -p 22 ubuntu:custom
-docker exec --user ubuntu "$name" "/scripts/keypair.sh"
-docker cp "$(echo $name):/home/ubuntu/.ssh/id_ed25519" ./$name.id
-docker port "$name"
-ssh ubuntu@localhost -p $YOUR_PORT -i ./$name.id
+$ source ./spawn.sh
+$ Spawn-Node YourCoolName
+```
+
+**WINDOWS**
+```powershell
+$ . ./spawn.ps1
+$ Spawn-Node YourCoolName
+```
+
+### Connect
+
+```bash
+$ docker port YourCoolName
+22/tcp -> 0.0.0.0:32771
+$ ssh -i ./YourCoolName.id -p 32771 ubuntu@localhost
 ```
 
 ## How To
